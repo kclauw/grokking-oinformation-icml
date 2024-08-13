@@ -1,3 +1,8 @@
+## Paper
+
+This is the code for the paper [Information-Theoretic Progress Measures reveal Grokking is an Emergent Phase Transition](https://openreview.net/pdf?id=Q4NH6hEPIX) by Kenzo Clauw, Daniele Marinazzo, and Sebastiano Stramaglia
+
+
 # Assumptions
 - Data is stored locally
 - Logging via Neptune
@@ -17,4 +22,6 @@ pip install jax[gpu]==0.3.25 -f https://storage.googleapis.com/jax-releases/jax_
 
 # Install the jaxlib 0.3.25 GPU wheel directly
 pip install jaxlib==0.3.25 -f https://storage.googleapis.com/jax-releases/jax_releases.html
+
+
 
