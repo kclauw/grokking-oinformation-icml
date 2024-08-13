@@ -1,0 +1,33 @@
+parameters:
+  #_target_: src.model.neural_network.DynamicFFN
+  activation: relu
+
+  encoder:
+    f1: 
+      width: 250
+      dropout: 0
+    f2: 
+      width: 30
+      dropout: 0
+
+  decoder:
+    f1: 
+      width: 250
+      dropout: 0
+    f2: 
+      width: 30
+      dropout: 0
+
+  initialization: default
+  set_last_layer_to_zero: False
+  alpha: 1.0
+  internal_rep_dim: 1
+  linear_embedding: True
+  
+
+name: encoder_decoder
+unique_name: null
+layer_names : null
+
+
+

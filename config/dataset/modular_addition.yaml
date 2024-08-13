@@ -1,0 +1,20 @@
+parameters:
+  p: 97
+  seed: 420
+  frac: 0.5
+  noise_level: 0
+  operation: add
+  #symbol_rep_dim: 16
+  
+  
+  fixed_seed: True
+  
+  #train_samples: null
+  #test_samples: null
+
+binary_input: False
+batch_size: 10000
+eval_batch_size: 10000
+name : modular_${dataset.parameters.operation}
+unique_name: ${dataset.name}_p_${dataset.parameters.p}_frac_${dataset.parameters.frac}_noise_${dataset.parameters.noise_level}
+

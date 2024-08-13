@@ -1,0 +1,38 @@
+parameters:
+  #_target_: src.model.neural_network.DynamicFFN
+  activation: relu
+  layers:
+    f1: 
+      width: 20
+      dropout:
+        strategy: do
+        value: 0
+      norm: null
+    f2: 
+      width: 20
+      dropout:
+        strategy: do
+        value: 0
+      norm: null
+    f3: 
+      width: 20
+      dropout:
+        strategy: do
+        value: 0
+      norm: null
+    output:
+      dropout:
+        strategy: dropout
+        value: 0
+      norm: null
+
+  initialization: default
+  set_last_layer_to_zero: False
+  alpha: 1.0
+
+name: fcn
+unique_name: null
+layer_names : null
+
+
+

@@ -1,0 +1,173 @@
+# @package _global_
+defaults:
+  - override /dataset: modular_addition
+  - override /model: fcn_250
+
+experiment_name: exp2_modular_add_adamw_initialization_euclidean
+
+loss: crossentropy
+wandb:
+  enabled: False
+
+seed: 0
+rescale: False
+save_model: True
+test_data_seed: 2001
+train_enabled: False
+oinfo_enabled: False
+lth_enabled: False
+acc_enabled: False
+set_cluster_folder: True
+save_only_initial_model: False
+rescale_training: False
+
+gridsearch_enabled: True
+plot : False
+overwrite: False
+n_jobs_pool: 10
+
+steps: 4000
+evaluation_step: 5
+plot_step: 1000
+train_batch_size: 32
+test_batch_size: 256
+
+train_percentage_enabled: True
+train_percentage: 0.4
+train_percentage_size: 10000
+
+learning_rate: 1e-3
+weight_decay: 0.00
+
+
+model_name: null
+exp_folder : null
+model_parameters: null
+alpha: 1
+
+optimizer:
+  name: adamw
+  arguments:
+    betas: [0.9, 0.98]
+    eps: 1e-08
+
+regularization:
+  synergy_weight: 0
+  redundancy_weight: 0
+  features: layer1_post
+  cluster_features: False
+  max_clusters: 3
+
+
+#"layer1_pre", 
+gridsearch:
+  parameters:
+
+    alpha:
+      #values:  [1, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+      values: [0.5, 1, 5, 10]
+
+    oinfo.features:
+      values: ["layer1_post"]
+      #values: ["layer1_post"]
+
+    model.parameters.initialization:
+      values: [default]
+    
+    rescale_training:
+      values: [False]
+
+    set_last_layer_zero_init:
+      values: [True]
+
+    clustering.linkage_method: 
+      values: ["ward"]
+      #values: ["ward", "complete", "average"]
+      #values: ["ward", "complete", "average", "single"]
+
+
+    clustering.metric:
+      #values: ["euclidean"]
+      values: ["euclidean"]
+      #values: ["euclidean", "l1", "l2", "cosine", "manhattan"]
+
+    clustering.normalize:
+      values: [False]
+      #values: [False, True]
+
+    model.parameters.activation:
+      values: ["relu"]
+
+    dataset.parameters.frac:
+      values: [0.4]
+
+    seed:
+      #values: [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+      #values: [0, 100, 200, 300, 400]
+      values: [0, 100, 200, 300, 400]
+      #values: [0]
+      #, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000
+    
+    weight_decay:
+      #values: [1, 0.5, 0.4, 0.3, 0.15]
+      #values: [0.001, 0.003, 0.0001, 0.00003]
+      values: [4, 1, 0.1, 0.01]
+  
+    learning_rate:
+      values: [0.03]
+
+    oinfo.cluster_size:
+      values: [10]
+      #values: [10, 12, 14, 16, 18, 20, 30, 40]
+      #values: [10, 20, 40, 60]
+    
+    lth.step:
+      values: [largest_syn, 0, 5, 3500]
+    
+    lth.layer:
+      values: ["f1"]
+    
+    lth.metric:
+      #values: ["synergy_inverse", "synergy", "synergy_norm"]
+      values: ["synergy"]
+
+plots:
+  heatmap_1: 
+    y: [weight_decay]
+    x: [alpha]
+    z: ["train_test_difference", "test_acc_step", "train_acc_step", "best_train_acc", "best_test_acc", "best_train_loss", "best_test_loss"]
+    x_label: "alpha"
+    y_label: "weight decay"
+    title: "N "
+    max_heatmap_size: 10
+
+lth:
+  step: 0
+  layer: fc1
+  metric: synergy
+  
+
+oinfo:
+  features : "layer1_post"
+  data: train
+  cluster_features: True
+  steps: [0, 100, 1950]
+  lth_steps: [2990000]
+  normalization: gcmi
+  evaluation_step: 5
+  verbose_cluster: True
+  cluster_size: 10
+  max_clusters: 20
+  batch_size: 200
+
+acc:
+  evaluate_specific_steps: [2500]
+  evaluate_specific_step_enabled: True
+
+clustering:
+  cluster_method: hierarchical
+  linkage_method: ward
+  metric: euclidean
+  normalize: False
+  num_clusters: 10
+    

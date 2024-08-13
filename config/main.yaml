@@ -1,0 +1,46 @@
+# @package _global_
+defaults:
+  - _self_
+  #- gridsearch: alpha_vs_training_size
+  - dataset: modular_addition
+  - model: fcn_100
+  - experiment: null
+  - paths: default
+  - hydra: default
+
+unique_training_name: null
+
+training:
+  seed: 0
+  steps: 4000
+  evaluation_step: 5
+  train_batch_size: 32
+  test_batch_size: 256
+  rescale_weight_norm: False
+  learning_rate: 1e-3
+  weight_decay: 0.00
+  alpha: 1
+
+lth:
+  metric: best_synergy
+  
+gridsearch_job_id: null
+ignore_existing_files: False
+download_files: False
+grokking_stop: False
+
+cluster_folder: /kyukon/scratch/gent/433/vsc43397/oinformation-grokking
+google_folder: /kyukon/scratch/gent/433/vsc43397/oinformation-grokking
+root_folder_type: local
+
+rescale_training: False
+set_last_layer_zero_init: False
+
+lth_enabled: False
+device: cuda
+
+neptune:
+  enabled: True
+
+run_id_training: null
+run_id_oinfo: null

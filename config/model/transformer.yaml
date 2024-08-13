@@ -1,0 +1,16 @@
+parameters:
+  #_target_: src.model.neural_network.DynamicFFN
+  num_layers: 1
+  d_model: 128
+  d_mlp: 512
+  d_head: 32
+  num_heads: 4
+  n_ctx: 3
+  act_type: 'ReLU'
+  use_cache: False
+  use_ln: False
+  
+name: transformer
+unique_name: transformer
+layer_names : null
+
